@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void moveZeroes(vector<int>& nums) {
+    void moveZeroes(vector<int>& nums) {  //brute force approach*******== by making an extra temp array and storing all non zero elements in it and then storing all zero elements in the original array and then storing all non zero elements in the original array
         int n=nums.size();
         int j=0;   //j variable use kar rh he non zero ko store karne ke liye jo ki zero se start hoga 
         for(int i=0;i<n;i++){

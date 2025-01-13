@@ -74,3 +74,55 @@ int majorityElement(vector<int> v) {
     if (cnt1 > (n / 2)) return el;
     return -1;
 }
+
+
+
+
+
+
+
+optimal
+
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n = nums.size(); 
+        int count = 0; // Initialize the count for the candidate.
+        int candidate = 0; // Variable to hold the current majority candidate.
+
+        // Step 1: Find a candidate for the majority element.
+        for (int i = 0; i < n; i++) {
+            if (count == 0) { 
+                // If count becomes 0, set the current element as the new candidate.
+                candidate = nums[i];
+                count = 1; // Reset the count for the new candidate.
+            } else if (nums[i] == candidate) {
+                // If the current element matches the candidate, increase the count.
+                count++;
+            } else {
+                // If the current element does not match the candidate, decrease the count.
+                count--;
+            }
+        }
+
+        // At this point, 'candidate' contains the potential majority element.
+        // However, we need to verify if it actually appears more than n/2 times.
+
+        count = 0; // Reset count to verify the candidate.
+
+        // Step 2: Verify the candidate by counting its occurrences.
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == candidate) {
+                count++;
+            }
+        }
+
+        // Check if the candidate appears more than n/2 times.
+        if (count > n / 2) {
+            return candidate; // Return the majority element.
+        }
+
+        return -1; // Return -1 if no majority element exists (edge case, usually not expected in problem constraints).
+    }
+};

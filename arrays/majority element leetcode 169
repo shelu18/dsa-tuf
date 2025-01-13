@@ -21,3 +21,56 @@ public:
         
     }
 };
+
+
+
+better approach   using hashmap
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        map<int,int>mappp;
+        int n=nums.size();
+        for (int i=0;i<n;i++){
+            mappp[nums[i]]++; //Each element in the vector v is treated as a key in the map.
+        }                     //The value associated with each key is the count of occurrences of that key in the vector.
+                                 //mpp = {3: 3, 4: 4, 2: 1} for another example 
+        for (auto it: mappp){
+            if (it.second>(n/2)){
+                return it.first;
+            }
+        }
+        return -1;
+    }
+};
+
+
+
+
+optimal  approach using this logic :
+int majorityElement(vector<int> v) {
+
+    //size of the given array:
+    int n = v.size();
+    int cnt = 0; // count
+    int el; // Element
+
+    //applying the algorithm:
+    for (int i = 0; i < n; i++) {
+        if (cnt == 0) {
+            cnt = 1;
+            el = v[i];
+        }
+        else if (el == v[i]) cnt++;
+        else cnt--;
+    }
+
+    //checking if the stored element
+    // is the majority element:
+    int cnt1 = 0;
+    for (int i = 0; i < n; i++) {
+        if (v[i] == el) cnt1++;
+    }
+
+    if (cnt1 > (n / 2)) return el;
+    return -1;
+}
